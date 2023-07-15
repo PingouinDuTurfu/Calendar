@@ -1,0 +1,42 @@
+indexes:
+- kind: event
+  properties:
+  - name: owner
+  - name: start
+
+- kind: event
+  properties:
+  - name: owner
+  - name: state
+  - name: start
+
+- kind: event
+  properties:
+  - name: sharedWith
+  - name: start
+
+- kind: event
+  properties:
+  - name: calendar
+  - name: start
+
+- kind: event
+  properties:
+  - name: owner
+  - name: end
+
+- kind: event
+  properties:
+  - name: owner
+  - name: state
+  - name: end
+
+- kind: event
+  properties:
+  - name: sharedWith
+  - name: end
+
+- kind: event
+  properties:
+  - name: calendar
+  - name: end

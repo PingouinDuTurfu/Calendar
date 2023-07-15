@@ -1,0 +1,41 @@
+@import "base.css";
+@import "login.css";
+@import "header.css";
+@import "left-panel.css";
+@import "main-calendar.css";
+@import "create-event.css";
+@import "edit-event.css";
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--light-grey);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--grey);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: calc(100% - var(--header-height));
+}

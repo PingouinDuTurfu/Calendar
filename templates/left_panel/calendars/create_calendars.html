@@ -1,0 +1,20 @@
+<div class="create-overlay create-calendar-container">
+    <div class="create-block-box create-calendar-box">
+        <div class="create-calendar-box-title">
+            Create Calendar
+        </div>
+        <form id="create-calendar-form" action="/api/create_calendar" method="POST">
+            <div class="create-block-box-input">
+                <label for="calendar-title">Name</label>
+                <input type="text" id="calendar-title" name="calendar-title" required>
+            </div>
+            <div class="create-calendar-box-input">
+                <label for="calendar-share">Share</label>
+                <select class="share-list" id="calendar-share" name="calendar-share"></select>
+            </div>
+            <div class="create-block-box-input">
+                <input type="submit" value="Create Calendar">
+            </div>
+        </form>
+    </div>
+</div>

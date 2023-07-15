@@ -1,0 +1,41 @@
+<div id="window-create-event" class="create-overlay create-event-container">
+    <div class="create-event-box">
+        <div class="create-event-box-title">
+            Create Event
+        </div>
+
+        <form id="form-create-event" action="/api/create_event" method="POST">
+            <div class="create-event-box-input">
+                <label for="event-title">Name</label>
+                <input type="text" id="event-title" name="event-title" required>
+            </div>
+            <div class="create-event-box-input">
+                <label for="event-date">Date</label>
+                <input type="date" id="event-date" name="event-date" required>
+            </div>
+            <div class="create-event-box-input">
+                <label for="event-start-time">Start Time</label>
+                <input type="time" id="event-start-time" name="event-start-time" required>
+            </div>
+            <div class="create-event-box-input">
+                <label for="event-time">End Time</label>
+                <input type="time" id="event-end-time" name="event-end-time" required>
+            </div>
+            <div class="create-event-box-input">
+                <label for="event-note">Note</label>
+                <textarea id="event-note" name="event-note" rows="4" cols="50" required></textarea>
+            </div>
+            <div class="create-event-box-input">
+                <label for="event-calendar">Calendar</label>
+                <select class="calendar-list" id="event-calendar" name="event-calendar"></select>
+            </div>
+            <div class="create-event-box-input">
+                <label for="event-share">Event Share</label>
+                <select class="share-list" id="event-share" name="event-share" multiple></select>
+            </div>
+            <div class="create-event-box-input">
+                <input type="submit" value="Create Event">
+            </div>
+        </form>
+    </div>
+</div>

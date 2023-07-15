@@ -1,0 +1,34 @@
+:root {
+    --background-header: #343541;
+    --hover-color-header: #292b32;
+    --text-color-header: #ECECF1FF;
+    --border-color-header: #ffffff33;
+
+    --background-left-panel: #202123;
+    --text-color-left-panel: #ECECF1FF;
+    --hover-color-left-panel: #2a2b32;
+
+    --background-blue: #4158d0;
+    --background-pink: #c850c0;
+
+    --shadow-white: #fff;
+    --shadow-pink: #f0f;
+    --shadow-blue: #0ff;
+
+    --background-error-red: #FA2D42FF;
+    --background-error-pink: #F56868FF;
+    --background-message-green: #04ac04;
+    --background-message-light-green: #41d045;
+
+    --white: #ECECF1FF;
+    --black: #202123;
+    --grey: #343541;
+    --light-grey: #808080;
+    --green: #04AC04B7;
+    --orange: #FFC300;
+    --blue: #4158d0;
+    --red: #FA2D42FF;
+
+    --header-height: 80px;
+    --header-main-calendar-height: 80px;
+}

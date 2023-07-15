@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- JQuery -->
+        <script src="{{ url_for('static',filename='lib/jquery-3.6.3.min.js') }}"></script>
+        <!-- Cookies -->
+        <script src="{{ url_for('static',filename='lib/js.cookie.min.js') }}"></script>  
+        <!-- Firebase -->
+        <script src="{{ url_for('static',filename='lib/firebasejs_8.10.1_firebase-app.js') }}"></script>
+        <script src="{{ url_for('static',filename='lib/firebasejs_8.10.1_firebase-auth.js') }}"></script>
+        <!-- Firebase UI -->
+        <script src="{{ url_for('static',filename='lib/firebasejs_ui_6.0.2_firebase-ui-auth.js') }}"></script>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='lib/firebasejs_ui_6.0.2_firebase-ui-auth.css') }}" />
+
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+        <script type="module" src="{{ url_for('static', filename='js/app-setup.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/login.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/listeners.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/components/HtmlBuilder.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/components/forms/CreateCalendarsForm.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/components/window_scripts/DefaultScriptWindow.js') }}"></script>
+        <script type="module" src="{{ url_for('static', filename='js/components/window_scripts/CreateCalendarsWindow.js') }}"></script>
+
+        <title>Assignment_02</title>
+
+        <script type="module">
+            import { currentSession } from "{{ url_for('static', filename='js/script.js') }}";
+            window.currentSession = currentSession;
+        </script>
+    </head>
+    <body>
+        <div id="header" data-include="header"></div>
+        <div id="login-box" data-window="login/login"></div>
+        
+        <div class="content">
+            <div id="left-panel" data-include="left_panel"></div>
+
+            <div class="main-calendar">
+                <div class="calendar-header">
+                    <div class="today-button-container">
+                        <button class="today-button" id="today-button">Today</button>
+                    </div>
+                    <div class="date-container">
+                        <img id="show-previous-week-button" src="{{ url_for('static', filename='svg/left_arrow.svg') }}" alt="left-arrow">
+                        <div class="current-date"></div>
+                        <img id="show-next-week-button" src="{{ url_for('static', filename='svg/right_arrow.svg') }}" alt="right-arrow">
+                    </div>
+                </div>
+                <div class="calendar-container">
+                    <div class="calendar-time">
+                        {% for i in range(0, 13) %}
+                            <div class="time">
+                                <span class="time-text">{{ i }} AM</span>
+                            </div>
+                        {% endfor %}
+
+                        {% for i in range(1, 13) %}
+                            <div class="time">
+                                <span class="time-text">{{ i }} PM</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="calendar-body">
+                        <div class="calendar-body-header"></div>
+                        <div class="calendar-body-grid">
+                            {% for i in range(0, 7) %}
+                                <div class="grid-column">
+                                    {% for j in range(0, 24) %}
+                                        <div class="cell"></div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                            <div class="grid-overlay-container">
+                                <div class="grid-overlay"></div>
+                            </div>
+                            <div class="edit-event-container">
+                                <form id="event-edit-form" action="/api/edit_event">
+                                    <div class="edit-event-box-input">
+                                        <label for="edit-event-title">Title</label>
+                                        <input type="text" id="edit-event-title" name="edit-event-title" required>
+                                    </div>
+                                    <div class="edit-event-box-input">
+                                        <label for="edit-event-date">Event Date</label>
+                                        <input type="date" id="edit-event-date" name="edit-event-date" required>
+                                    </div>
+                                    <div class="edit-event-box-input">
+                                        <label for="edit-event-start-time">Start Time</label>
+                                        <input type="time" id="edit-event-start-time" name="edit-event-start-time" required>
+                                    </div>
+                                    <div class="edit-event-box-input">
+                                        <label for="edit-event-time">End Time</label>
+                                        <input type="time" id="edit-event-end-time" name="event-end-time" required>
+                                    </div>
+                                    <div class="edit-event-box-input">
+                                        <label for="edit-event-note">Note</label>
+                                        <textarea id="edit-event-note" name="event-note" rows="4" cols="50" required></textarea>
+                                    </div>
+                                    <div class="edit-event-box-input">
+                                        <label for="edit-event-calendar">Calendar</label>
+                                        <select class="calendar-list" id="edit-event-calendar" name="edit-event-calendar"></select>
+                                    </div>
+
+                                    <input type="hidden" id="edit-event-id" name="edit-event-id">
+
+                                    <div class="edit-event-box-input">
+                                        <input type="submit" value="Edit Event">
+                                    </div>
+
+                                    <div class="edit-event-box-input">
+                                        <input id="edit-event-delete" type="button" value="Delete Event">
+                                    </div>
+
+                                    <div class="close-box">
+                                        <img src="{{ url_for('static', filename='svg/cross.svg') }}" alt="close">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="after-share-event-container">
+                                <form id="event-after-share-form" action="/api/share_event">
+
+                                    <input type="hidden" id="edit-event-id" name="edit-event-id">
+
+                                    <div class="after-share-event-box-input">
+                                        <label for="event-share">Event Share</label>
+                                        <select class="share-list" id="event-share" name="event-share" multiple required></select>
+                                    </div>
+
+                                    <div class="after-share-event-box-input">
+                                        <input type="submit" value="Share Event">
+                                    </div>
+
+                                    <div class="close-box">
+                                        <img src="{{ url_for('static', filename='svg/cross.svg') }}" alt="close">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="after-share-calendar-container">
+                                <form id="calendar-after-share-form" action="/api/share_calendar">
+                                    <input type="hidden" id="share-calendar-id" name="share-calendar-id">
+
+                                    <div class="already-shared-calendar-list">
+                                        <label for="calendar-already-share">Remove Share</label>
+                                        <select class="already-share-list" id="calendar-already-share" name="calendar-already-share" multiple></select>
+                                    </div>
+
+                                    <div class="after-share-event-box-input">
+                                        <input type="submit" value="Remove Share">
+                                    </div>
+
+                                    <div class="after-share-calendar-box-input">
+                                        <label for="calendar-share">Share</label>
+                                        <select class="share-list" id="calendar-share" name="calendar-share" multiple></select>
+                                    </div>
+
+                                    <div class="after-share-event-box-input">
+                                        <input type="submit" value="Share Calendar">
+                                    </div>
+
+                                    <div class="close-box">
+                                        <img src="{{ url_for('static', filename='svg/cross.svg') }}" alt="close">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,7 @@
+env
+.idea
+
+static/js/app-setup.js
+credentials.json
+
+init.py
