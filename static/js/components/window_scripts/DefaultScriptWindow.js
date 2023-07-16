@@ -1,10 +1,11 @@
 export class DefaultScriptWindow {
 
-    constructor(element) {
-        this.element = element;
+    constructor(trigger, window) {
+        this.trigger = trigger;
+        this.window = window;
     }
 
     async run() {
-        console.log("Missing implementation for this element " + this.element);
+        console.log("Missing implementation for this element " + this.window + " with trigger " + this.trigger);
     }
 }

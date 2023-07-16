@@ -27,17 +27,18 @@ class ClickableWindow {
         if(scriptPath !== undefined)
             import(DEFAULT_PATH + scriptPath + ".js")
                 .then(({ default: Clazz }) => {
-                    this.windowScript = new Clazz(this.window);
+                    this.windowScript = new Clazz(this.button, this.window);
                 });
 
         this.displayStatus();
     }
 
     showWindow() {
-        this.window.css("display", "block");
-        this.isWindowVisible = true;
         if (this.windowScript !== undefined)
             this.windowScript.run();
+
+        this.window.css("display", "block");
+        this.isWindowVisible = true;
     }
 
     hideWindow() {

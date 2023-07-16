@@ -2,15 +2,15 @@ import { DefaultScriptWindow } from "./DefaultScriptWindow.js";
 
 export default class CreateCalendarsWindow extends DefaultScriptWindow{
 
-    constructor(element) {
-        super(element)
+    constructor(trigger, window) {
+        super(trigger, window)
     }
 
     async run() {
-        if(this.element.find('#header-notification-items-list').children().length === 0)
-            this.element.find('#header-notification-empty').css("display", "flex");
+        if(this.window.find('#header-notification-items-list').children().length === 0)
+            this.window.find('#header-notification-empty').css("display", "flex");
         else
-            this.element.find('#header-notification-empty').css("display", "none");
+            this.window.find('#header-notification-empty').css("display", "none");
     }
 }
 

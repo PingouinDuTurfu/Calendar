@@ -4,8 +4,8 @@ import { DefaultScriptWindow } from "./DefaultScriptWindow.js";
 
 export default class CreateCalendarsWindow extends DefaultScriptWindow{
 
-    constructor(element) {
-        super(element)
+    constructor(trigger, window) {
+        super(trigger, window)
     }
 
     async run() {
@@ -19,14 +19,14 @@ export default class CreateCalendarsWindow extends DefaultScriptWindow{
             return;
         }
 
-        const shareList = this.element.find('#calendar-share');
+        const shareList = this.window.find('#calendar-share');
         shareList.empty().append(`<option value="null">None</option>`);
 
         response.users.forEach(user => {
             shareList.append(`<option value="${user}">${user}</option>`);
         });
 
-        const calendar_list = this.element.find('#calendar-list');
+        const calendar_list = this.window.find('#calendar-list');
         calendar_list.empty().append(`<option value="null">Default</option>`);
 
         currentSession.calendars.forEach(calendar => {
