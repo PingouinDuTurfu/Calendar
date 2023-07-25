@@ -1,6 +1,6 @@
 import { DefaultScriptWindow } from "./DefaultScriptWindow.js";
 
-export default class CreateCalendarsWindow extends DefaultScriptWindow{
+export default class CreateCalendarsWindow extends DefaultScriptWindow {
 
     constructor(trigger, window) {
         super(trigger, window)

@@ -1,6 +1,7 @@
-import { endInitHtml } from "../HtmlBuilder.js";
+import { logger } from "../Logger.js";
+import { htmlBuilder } from "../HtmlBuilder.js";
 
-endInitHtml.then(() => {
+htmlBuilder.getPromise().then(() => {
     $('#create-calendar-form').submit(function (e) {
         e.preventDefault();
 
@@ -9,14 +10,17 @@ endInitHtml.then(() => {
             form[item.name] = item.value;
         });
 
+
+        logger.log(form);
+
         const dataJson = {
-            "name": form['calendar-title']
+            "name": form['calendar-title'],
+            "share": form['share-list']
         };
 
-
-        console.log(dataJson);
         // const json = {};
         // json['name'] = array[0]['value'];
+        //
         // let share_list = [];
         // if ($(this).find('.share-list').val() !== '---')
         //     share_list = $(this).find('.share-list').val().filter(item => item !== '---');

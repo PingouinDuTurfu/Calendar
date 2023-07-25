@@ -104,7 +104,7 @@ def create_event(
         'end': int(end),
         'state': int(state),
         'owner': owner,
-        'calendar': calendar_id,
+        'calendar': int(calendar_id),
         'sharedWith': shared_with
     })
 

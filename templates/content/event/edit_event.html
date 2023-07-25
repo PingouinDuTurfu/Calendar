@@ -2,30 +2,30 @@
     <form id="event-edit-form" action="/api/edit_event">
         <div class="edit-event-box-input">
             <label for="edit-event-title">Title</label>
-            <input type="text" id="edit-event-title" name="edit-event-title" required>
+            <input type="text" id="edit-event-title" name="title" required>
         </div>
         <div class="edit-event-box-input">
             <label for="edit-event-date">Event Date</label>
-            <input type="date" id="edit-event-date" name="edit-event-date" required>
+            <input type="date" id="edit-event-date" name="date" required>
         </div>
         <div class="edit-event-box-input">
             <label for="edit-event-start-time">Start Time</label>
-            <input type="time" id="edit-event-start-time" name="edit-event-start-time" required>
+            <input type="time" id="edit-event-start-time" name="start-time" required>
         </div>
         <div class="edit-event-box-input">
-            <label for="edit-event-time">End Time</label>
-            <input type="time" id="edit-event-end-time" name="event-end-time" required>
+            <label for="edit-event-end-time">End Time</label>
+            <input type="time" id="edit-event-end-time" name="end-time" required>
         </div>
         <div class="edit-event-box-input">
             <label for="edit-event-note">Note</label>
-            <textarea id="edit-event-note" name="event-note" rows="4" cols="50" required></textarea>
+            <textarea id="edit-event-note" name="note" rows="4" cols="50" required></textarea>
         </div>
         <div class="edit-event-box-input">
             <label for="edit-event-calendar">Calendar</label>
-            <select class="calendar-list" id="edit-event-calendar" name="edit-event-calendar"></select>
+            <select class="calendar-list" id="edit-event-calendar" name="calendar"></select>
         </div>
 
-        <input type="hidden" id="edit-event-id" name="edit-event-id">
+        <input type="hidden" id="edit-event-id" name="id">
 
         <div class="edit-event-box-input">
             <input type="submit" value="Edit Event">
@@ -35,8 +35,8 @@
             <input id="edit-event-delete" type="button" value="Delete Event">
         </div>
 
-        <div class="close-box">
-            <img src="{{ url_for('static', filename='svg/cross.svg') }}" alt="close">
+        <div class="close-button">
+            <img src="static/svg/cross.svg" alt="close">
         </div>
     </form>
 </div>

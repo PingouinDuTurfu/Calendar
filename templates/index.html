@@ -73,8 +73,8 @@
                                     {% endfor %}
                                 </div>
                             {% endfor %}
-                            <div class="grid-overlay-container">
-                                <div class="grid-overlay"></div>
+                            <div id="grid-overlay-container" class="grid-overlay-container">
+                                <div id="grid-overlay" class="grid-overlay"></div>
                             </div>
 
                             <div id="window-create-event" data-window="left_panel/event/create_event"></div>
@@ -130,6 +130,10 @@
                     </div>
                 </div>
             </div>
+
+            <div id="window-edit-event" data-window="content/event/edit_event"></div>
+            <div id="window-edit-calendar" data-window="content/calendar/edit_calendar"></div>
+
         </div>
     </body>
 </html>

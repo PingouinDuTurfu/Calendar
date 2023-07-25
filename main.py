@@ -66,20 +66,24 @@ def get_week_data():
         if start == '' or end == '':
             return {'status': RESPONSE_CODE.BAD_REQUEST}
 
-        status, events_not_in_calendar = database.fetch_event_by_date(start, end, None, claim['email'], None, False)
+        status, events = database.fetch_event_by_date(start, end)
         if status != RESPONSE_CODE.OK:
             return {'status': status}
 
-        status, events_in_shared_calendar = database.fetch_event_by_date(start, end, None, None, claim['email'])
-        if status != RESPONSE_CODE.OK:
-            return {'status': status}
+        # status, events_not_in_calendar = database.fetch_event_by_date(start, end, None, claim['email'], None, False)
+        # if status != RESPONSE_CODE.OK:
+        #     return {'status': status}
+        #
+        # status, events_in_shared_calendar = database.fetch_event_by_date(start, end, None, None, claim['email'])
+        # if status != RESPONSE_CODE.OK:
+        #     return {'status': status}
+        #
+        # status, events_own = database.fetch_event_by_date(start, end, None, claim['email'])
+        # if status != RESPONSE_CODE.OK:
+        #     return {'status': status}
 
-        status, events_own = database.fetch_event_by_date(start, end, None, claim['email'])
-        if status != RESPONSE_CODE.OK:
-            return {'status': status}
-
-        return {'status': status, 'events_not_in_calendar': events_not_in_calendar,
-                'events_in_shared_calendar': events_in_shared_calendar, 'events_own': events_own}
+        return {'status': status, 'events': events}
+            # ,'events_in_shared_calendar': events_in_shared_calendar, 'events_own': events_own}
     return {'status': RESPONSE_CODE.UNAUTHORIZED}
 
 
@@ -184,22 +188,26 @@ def create_calendar():
         if name == '':
             return {'status': RESPONSE_CODE.BAD_REQUEST}
 
-        status, calendar = database.create_calendar(name, claim['email'])
-        if status != RESPONSE_CODE.OK:
-            return {'status': status}
+        # status, calendar = database.create_calendar(name, claim['email'])
+        # if status != RESPONSE_CODE.OK:
+        #     return {'status': status}
 
         share = request.form.get('share')
 
-        if share is not None:
-            share_status, email_failed = database.share_calendar(calendar['id'], json.loads(share))
+        print(share)
 
-            if share_status == RESPONSE_CODE.PARTIAL_CONTENT:
-                return {'status': RESPONSE_CODE.PARTIAL_CONTENT, 'email_failed': email_failed, 'calendar': calendar}
+        return {'status': RESPONSE_CODE.OK}
 
-            if share_status != RESPONSE_CODE.OK:
-                return {'status': share_status}
-
-        return {'status': status, 'calendar': calendar}
+        # if share is not None:
+        #     share_status, email_failed = database.share_calendar(calendar['id'], json.loads(share))
+        #
+        #     if share_status == RESPONSE_CODE.PARTIAL_CONTENT:
+        #         return {'status': RESPONSE_CODE.PARTIAL_CONTENT, 'email_failed': email_failed, 'calendar': calendar}
+        #
+        #     if share_status != RESPONSE_CODE.OK:
+        #         return {'status': share_status}
+        #
+        # return {'status': status, 'calendar': calendar}
     return {'status': RESPONSE_CODE.UNAUTHORIZED}
 
 

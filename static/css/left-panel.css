@@ -2,22 +2,23 @@
     --left-pannel-width: 300px;
 }
 
-
 .left-panel-container {
     display: flex;
     flex-direction: column;
     width: var(--left-pannel-width);
-    height: 100%;
     background-color: var(--background-left-panel);
     color: var(--text-color-left-panel);
-    /*overflow-y: auto;*/
+    padding-top: 5px;
+    overflow-y: auto;
 }
 
 .left-panel-container .left-panel-block {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    padding-left: 20px;
+    border: var(--white) 1px solid;
+    margin: 5px 10px;
+    border-radius: 10px;
 }
 
 .left-panel-container .block-container-title {
@@ -25,6 +26,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding-left: 20px;
 }
 
 .left-panel-container .block-container-title .title-text {
@@ -61,6 +63,11 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.left-panel-container .block-list-container:has(.block) {
+    padding-bottom: 10px;
 }
 
 .left-panel-container .block-list-container .block {
@@ -68,10 +75,10 @@
     flex-direction: row;
     align-items: center;
     margin: 3px 0;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 10px;
     box-sizing: border-box;
-    width: fit-content;
+    width: 100%;
 }
 
 .left-panel-container .block-list-container .block:hover {
@@ -99,7 +106,7 @@
 .left-panel-container .block-list-container .block .block-title {
     font-size: 20px;
     margin: 0 10px;
-    width: 100px;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
 }

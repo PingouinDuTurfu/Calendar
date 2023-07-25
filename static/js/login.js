@@ -1,5 +1,6 @@
-import {currentSession} from "./script.js";
-import {endInitHtml} from "./components/HtmlBuilder.js";
+import { logger } from "./components/Logger.js";
+import { currentSession } from "./script.js";
+import {appSetup} from "./app-setup.js";
 
 const defaultUiConfig = {
     signInOptions: [
@@ -7,25 +8,6 @@ const defaultUiConfig = {
     ]
 };
 
-firebase.auth().onAuthStateChanged(function(user) {
-    console.log("User changed to " + user)
-    if(user) {
-        $('#login-button').hide();
-        $('#sign-out-button').show();
-        user.getIdToken().then(function(token) {
-            Cookies.set('token', token, { expires: 1/24}, { path: '/' });
-        });
-        currentSession.createSession();
-        currentSession.buildNotificationsBox();
-        currentSession.updateWeek();
-    } else {
-        $('#login-button').show();
-        $('#sign-out-button').hide();
-        Cookies.remove('token', { path: '/' });
-    }
-}, function(error) {
-    $('.messages-container').append("<div class='error-message'>" + error + "</div>");
-});
 
 function login(signInSuccessUrl = "/") {
     const uiConfig = defaultUiConfig;
@@ -43,11 +25,28 @@ function login(signInSuccessUrl = "/") {
     ui.start('#firebase-auth-container', uiConfig);
 }
 
-endInitHtml.done(() => {
-    $('#login-box-close-button').click(function() {
-        $('.login-box-container').hide();
+appSetup.done(() => {
+    firebase.auth().onAuthStateChanged(function(user) {
+        logger.log("User changed to " + (user ? user.uid : "null"));
+        if(user) {
+            $('#login-button').hide();
+            $('#sign-out-button').show();
+            user.getIdToken().then(function(token) {
+                Cookies.set('token', token, { expires: 1/24}, { path: '/' });
+            });
+            currentSession.createSession();
+            currentSession.buildNotificationsBox();
+            currentSession.updateWeek();
+        } else {
+            $('#login-button').show();
+            $('#sign-out-button').hide();
+            Cookies.remove('token', { path: '/' });
+        }
+    }, function(error) {
+        $('.messages-container').append("<div class='error-message'>" + error + "</div>");
     });
 
+    logger.log("Login started");
     $('#login-button').click(function() {
         const user = firebase.auth().currentUser;
         if(!user)

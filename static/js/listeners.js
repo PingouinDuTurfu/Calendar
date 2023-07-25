@@ -1,9 +1,10 @@
-import { endInitHtml } from "./components/HtmlBuilder.js";
+import { logger } from "./components/Logger.js";
+import { htmlBuilder } from "./components/HtmlBuilder.js";
 import { currentSession, createDateFromHtml } from "./script.js";
 
-endInitHtml.then(() => {
+htmlBuilder.getPromise().then(() => {
 
-    console.log('listeners.js loaded');
+    logger.log('listeners.js loaded');
 
     $('#show-previous-week-button').click(function () {
         currentSession.decrementDate(7);
@@ -20,13 +21,13 @@ endInitHtml.then(() => {
         currentSession.updateWeek();
     });
 
-    $('.edit-event-container .close-box').click(function () {
-        $('.edit-event-container').hide();
-    });
-
-    $('.after-share-calendar-container .close-box').click(function () {
-        $('.after-share-calendar-container').hide();
-    });
+    // $('.edit-event-container .close-box').click(function () {
+    //     $('.edit-event-container').hide();
+    // });
+    //
+    // $('.after-share-calendar-container .close-box').click(function () {
+    //     $('.after-share-calendar-container').hide();
+    // });
 
     // $('#header-notification-button').click(function () {
     //     const notification_box = $('.header-notification-overlay');

@@ -1,8 +1,8 @@
 import { Session } from './Session.js';
+import { htmlBuilder } from "./components/HtmlBuilder.js";
 
 const currentSession = new Session();
-
-$(document).ready(function() {
+htmlBuilder.getPromise().done(() => {
     currentSession.resize()
     currentSession.displayWeekDaysHeader();
     currentSession.displayHeaderMonthAndYear();

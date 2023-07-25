@@ -1,3 +1,5 @@
+import { logger } from "../Logger.js";
+
 export class DefaultScriptWindow {
 
     constructor(trigger, window) {
@@ -6,6 +8,10 @@ export class DefaultScriptWindow {
     }
 
     async run() {
-        console.log("Missing implementation for this element " + this.window + " with trigger " + this.trigger);
+        logger.warn("Missing implementation for this element " + this.window + " with trigger " + this.trigger);
+    }
+
+    setTrigger(trigger) {
+        this.trigger = trigger;
     }
 }
